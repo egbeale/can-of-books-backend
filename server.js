@@ -1,18 +1,25 @@
 'use strict';
-
+// --------- REQUIRES ------
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
+// ---------- USE --------
 const app = express();
 app.use(cors());
 
-const PORT = process.env.PORT || 3001;
+// ------ define PORT validate env is working -----
+const PORT = process.env.PORT || 3002;
 
-app.get('/test', (request, response) => {
+// ---------- ROUTES ----------
+app.get('/', (request, response) => {
+  response.status(200).send('Hello from the server.');
+});
 
-  response.send('test request received')
+// --------- ERROR ----------
+app.get('*', (request, response) => {
+  response.status(404).send('Looks like you\'re trying to go somewhere that doesn\'t exist.');
+});
 
-})
-
+// --------- LISTEN ----------
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
