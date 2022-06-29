@@ -6,7 +6,7 @@ mongoose.connect(process.env.DB_URL);
 const Book = require('./models/books.js');
 
 async function seed() {
-  await Book.create({
+  await Book.create({ // this is mongoose element that's making books happen. But to give user ability to do this, we need to write method in server so taht when user hits that route, we can create a cat.
     title: 'How to Think Like a Programmer',
     description: 'Lessons in problem-solving.',
     status: false
